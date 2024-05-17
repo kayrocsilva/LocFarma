@@ -13,7 +13,6 @@ import Login from './pages/Login/Login'
 import Footer from './components/Footer/Footer'
 import About from './pages/About/About'
 
-
 function App() {
   const [user, setUser] = useState(undefined)
   const { auth } = userAuthentication()
@@ -35,9 +34,9 @@ function App() {
         <BrowserRouter>
           <Navbar/>
           <div className='container'>
-            <Routes>
+            <Routes>            
               <Route path='/' element={<Home/>}></Route>
-              <Route path='/login' element={<Login />}></Route> 
+              <Route path='/login' element={<Login />}></Route>          
               <Route path='/about'element={<About />}></Route>            
             </Routes>
           </div>

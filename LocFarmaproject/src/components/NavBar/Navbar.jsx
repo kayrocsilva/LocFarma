@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { userAuthentication } from '../../hooks/userAuthentication'
 import { useAuthValue } from '../../context/AuthContext'
 import styles from '../NavBar/Navbar.module.css'
+import SearchBar from '../SearchBar/SearchBar'
 
 const Navbar = () => {
   const { user } = useAuthValue()
@@ -14,6 +15,11 @@ const Navbar = () => {
         <NavLink to='/' className={styles.brand}>
           LocFarma
         </NavLink>
+        <NavLink to='/'>
+          <SearchBar />
+          <button>Pesquisar</button>
+        </NavLink>
+        
         <ul className={styles.links_list}>
           <li>
             <NavLink to='/'
@@ -35,13 +41,19 @@ const Navbar = () => {
               </li>
             </>
           )}
-
+          {user && (
+            <li>
+              <button className={styles.logout} onClick={logout} >Chat</button>
+            </li>
+          
+          )}
           
           {user && (
             <li>
               <button className={styles.logout} onClick={logout} >Exit</button>
-            </li>
+            </li>          
           )}
+          
         </ul>
       </nav>
     </>

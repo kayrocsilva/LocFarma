@@ -49,19 +49,10 @@ const About = () => {
                     {/*<img class="equipe" src="imgs/equipe/kayro.jpg" alt="Kayro">*/}
                     <div class="card-body">
                         <h5 class="card-title">Kayro César</h5>
-                        <p class="card-text">Líder</p>
+                        <p class="card-text">Scrum Master</p>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="card my-3">
-                    {/*<img class="equipe" src="imgs/equipe/lucas.jpg" alt="Lucas">*/}
-                    <div class="card-body">
-                        <h5 class="card-title">Lucas Rodrigues</h5>
-                        <p class="card-text">Desenvolvedor</p>
-                    </div>
-                </div>
-            </div>
+            </div>           
             <div class="col-sm-3">
                 <div class="card my-3">
                     {/*<img class="equipe" src="imgs/equipe/paulo.jpg" alt="Paulo">*/}

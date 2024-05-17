@@ -3,6 +3,7 @@ import styles from '../Login/Login.module.css'
 import { useState } from 'react'
 import { userAuthentication } from '../../hooks/userAuthentication'
 import { useNavigate } from 'react-router-dom'
+
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -28,7 +29,15 @@ const Login = () => {
     if (authError) {
         setError(authError)
     }
-  }, [authError])
+  }, [authError]);
+
+  const handleRegisterClick = () => {
+    navigate('/register')
+  }
+
+  const handleRecoverPasswordClick = () => {
+    navigate('/recover-password')
+  }
   return (
     <div className={styles.login}>
         <h1>LocFarma</h1>
@@ -57,6 +66,8 @@ const Login = () => {
         {loading && <button className="btn" disabled>Aguarde...</button>}
         {error && <p className='error'>{error}</p>}
     </form>
+    {!loading && <button className="btn" onClick={handleRegisterClick}>Registrar</button>}
+    {!loading && <button className="btn" onClick={handleRecoverPasswordClick}>Recuperar Senha</button>}
     </div>
   )
 }
