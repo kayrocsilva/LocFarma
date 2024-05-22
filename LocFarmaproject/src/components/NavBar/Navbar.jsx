@@ -16,8 +16,7 @@ const Navbar = () => {
           LocFarma
         </NavLink>
         <NavLink to='/'>
-          <SearchBar />
-          <button>Pesquisar</button>
+          <SearchBar />          
         </NavLink>
         
         <ul className={styles.links_list}>
@@ -43,10 +42,17 @@ const Navbar = () => {
           )}
           {user && (
             <li>
-              <button className={styles.logout} onClick={logout} >Chat</button>
-            </li>
+            <NavLink to='/chat'
+              className={({ isActive }) => (isActive ? styles.active : null)}>Chat</NavLink>
+          </li>
           
           )}
+          {user && (
+            <li>
+            <NavLink to='/perfil'
+              className={({ isActive }) => (isActive ? styles.active : null)}>Perfil</NavLink>
+          </li>  
+          )}         
           
           {user && (
             <li>

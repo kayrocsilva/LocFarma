@@ -12,6 +12,9 @@ import Home from './pages/Home/Home'
 import Login from './pages/Login/Login'
 import Footer from './components/Footer/Footer'
 import About from './pages/About/About'
+import Register from './pages/Register/Register'
+import PasswordRecovery from './pages/PasswordRecovery/PasswordRecovery'
+
 
 function App() {
   const [user, setUser] = useState(undefined)
@@ -37,7 +40,9 @@ function App() {
             <Routes>            
               <Route path='/' element={<Home/>}></Route>
               <Route path='/login' element={<Login />}></Route>          
-              <Route path='/about'element={<About />}></Route>            
+              <Route path='/about'element={<About />}></Route>
+              <Route path='/register' element={<Register />}></Route>  
+              <Route path='/recover-password' element={<PasswordRecovery />}></Route>
             </Routes>
           </div>
           <Footer />
