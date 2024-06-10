@@ -1,4 +1,4 @@
-# AgroconnectFatec
+# LocFarma
 Repositório para desenvolvimento do software LocFarma, para o cumprimento do Projeto Transdisciplinar do curso Desenvolvimento de Software Multiplataforma, na faculdade Fatec Matão - Luiz Marchesan.
 
 # Tarefas de Melhorias como Avaliação [11/06/2024] 
