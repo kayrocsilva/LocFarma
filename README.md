@@ -838,7 +838,7 @@ Repositório para desenvolvimento do software LocFarma, para o cumprimento do Pr
       ```
 
 37. **Funcionalidade: Adicionar Suporte para Pagamentos com PayPal (21 pontos)**
-    - **Descrição:** Integrar PayPal como método de pagamento na aplicação.
+    - **Descrição:** Integrar PayPal como método de pagamento na aplicação para atribuição as licenças de publçicidade.
     - **Exemplo de Código:**
       ```js
       // paypalPayment.js
@@ -861,7 +861,7 @@ Repositório para desenvolvimento do software LocFarma, para o cumprimento do Pr
       ```
 
 38. **Funcionalidade: Implementar Relatórios de Vendas (34 pontos)**
-    - **Descrição:** Adicionar uma seção de relatórios de vendas para análise do desempenho das vendas.
+    - **Descrição:** Adicionar uma seção de relatórios de vendas para análise do desempenho das vendas de publicidade na plataforma.
     - **Exemplo de Código:**
       ```jsx
       // SalesReports.js
