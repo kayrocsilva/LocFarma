@@ -1,0 +1,37 @@
+.searchContainer {
+    display: flex;
+    align-items: center;
+  }
+  
+  .searchInput {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 8px;
+  }
+  
+  .searchButton {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .searchButton:hover {
+    background-color: #e0e0e0;
+  }
+  
+  /* Ícone de lupa para dispositivos móveis */
+  @media (max-width: 768px) {
+    .searchButton {
+      padding: 8px;
+      background-color: transparent;
+      border: none;
+    }
+  
+    .searchButton svg {
+      font-size: 1.2rem;
+    }
+  }

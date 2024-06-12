@@ -1,4 +1,8 @@
 import React from 'react'
+import kayro from '../../assets/images/equipe/kayro.jpg'
+import paulo from '../../assets/images/equipe/paulo.jpg'
+import pedro from '../../assets/images/equipe/pedro.jpg'
+import styles from '../About/About.module.css'
 
 const About = () => {
   return (
@@ -46,7 +50,7 @@ const About = () => {
         <div class="row">
             <div class="col-sm-3">
                 <div class="card my-3">
-                    {/*<img class="equipe" src="imgs/equipe/kayro.jpg" alt="Kayro">*/}
+                    <img src={kayro} alt="Kayro" className={styles.equipe}/>
                     <div class="card-body">
                         <h5 class="card-title">Kayro César</h5>
                         <p class="card-text">Scrum Master</p>
@@ -55,7 +59,7 @@ const About = () => {
             </div>           
             <div class="col-sm-3">
                 <div class="card my-3">
-                    {/*<img class="equipe" src="imgs/equipe/paulo.jpg" alt="Paulo">*/}
+                    <img src={paulo} alt="Paulo" className={styles.equipe}/>
                     <div class="card-body">
                         <h5 class="card-title">Paulo Selestrino</h5>
                         <p class="card-text">Gestor de Projetos</p>
@@ -64,7 +68,7 @@ const About = () => {
             </div>
             <div class="col-sm-3">
                 <div class="card my-3">
-                    {/*<img class="equipe" src="imgs/equipe/pedro.jpg" alt="Pedro">*/}
+                    <img src={pedro} alt="Pedro" className={styles.equipe}/>
                     <div class="card-body">
                         <h5 class="card-title">Pedro Rodrigues</h5>
                         <p class="card-text">Analista de Qualidade</p>

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { db } from '../../firebase/config';
+import styles from './SearchBar.module.css';
+import { FaSearch } from 'react-icons/fa';
 
 const SearchBar = () => {
   const [query, setQuery] = useState('');
@@ -24,14 +26,17 @@ const SearchBar = () => {
   };
 
   return (
-    <div>
+    <div className={styles.searchContainer}>
       <input
         type="text"
         placeholder="Digite sua busca..."
         value={query}
         onChange={handleInputChange}
+        className={styles.searchInput}
       />
-      <button onClick={handleSearch}>Pesquisar</button>
+      <button onClick={handleSearch} className={styles.searchButton}>
+        <FaSearch />
+      </button>
       <ul>
         {options.map((option, index) => (
           <li key={index}>
@@ -44,4 +49,3 @@ const SearchBar = () => {
 };
 
 export default SearchBar;
-
