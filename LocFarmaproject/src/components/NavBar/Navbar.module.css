@@ -1,39 +1,121 @@
-.navbar{
+.navbar {
     display: flex;
-    box-shadow: rgba(0, 0, 0, .15) 0px -2px 10 0px;
-    justify-content: space-between;
     align-items: center;
-    padding: .5em 2em;
-}
+    justify-content: space-between;
+    background-color: #fbfbfb;
+    padding: 10px 20px;
+    color: rgb(53, 53, 174);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #61dafb;
+    text-decoration: none;
+  }
+  
+  .logoDesktop {
+    width: 150px;
+    height: auto;
+    display: block;
+  }
 
-.brand{
-    font-size: 1.2em;
-}
+  .logoMobile {
+    width: 30px;
+    height: auto;
+    display: none;
+  }
 
-.brand span{
-    font-weight: 900;
-    text-transform: uppercase;
-}
-
-.links_list{
-    display: flex;
-    list-style: none;
-}
-
-.links_list li a{
-    padding: .4em .6em;
-}
-
-.active{
-    background-color: black;
-    color: #fff;
-}
-
-.logout{
-    width: 60px;
-    background-color: darkturquoise;
+  .hamburger {
+    display: none;
+    font-size: 2rem;
+    background: none;
     border: none;
-    border-radius: 10px;
-    padding: 5px;
+    color: rgb(4, 4, 4);
     cursor: pointer;
-}
+  }
+  
+  .links_list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .links_list li {
+    margin: 0 10px;
+  }
+  
+  .links_list li a {
+    color: rgb(10, 10, 10);
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .links_list li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .active {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .logout {
+    background-color: #ff4b5c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .logout:hover {
+    background-color: #e63946;
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .hamburger {
+      display: block;
+    }
+
+    .logoDesktop {
+        display: none;
+      }
+    
+      .logoMobile {
+        display: block;
+      }
+  
+    .links_list {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .links_list.show {
+      display: flex;
+    }
+  
+    .links_list li {
+      width: 100%;
+      text-align: center;
+      margin: 5px 0;
+    }
+  
+    .links_list li a {
+      display: block;
+      width: 100%;
+    }
+  
+    .logout {
+      width: 100%;
+      text-align: center;
+    }
+  }
