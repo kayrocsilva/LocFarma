@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=McLaren');
 
+
 /* variáveis */
 :root {
     --cor-fundo-pagina: #e6f6eb;
@@ -36,9 +37,13 @@ body {
     background-color: var(--cor-fundo-menu);
 }
 
-.menu .nav-link {
+.menu{
     border: 1px solid transparent;
     border-radius: 6px;
+}
+
+.nav-link {
+  border-color: #000;  
 }
 
 .menu .nav-link:hover {

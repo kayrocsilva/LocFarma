@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { auth } from '../../firebase/config';
 import { sendPasswordResetEmail } from 'firebase/auth';
 
-const PasswordRecovery = () => {
+const RecoveryPassword = () => {
   const [resetMethod, setResetMethod] = useState('');
   const [formValues, setFormValues] = useState({
     email: '',
     phone: ''
   });
+  const [feedback, setFeedback] = useState('');
 
   const handleResetMethodChange = (e) => {
     setResetMethod(e.target.value);
@@ -24,47 +25,50 @@ const PasswordRecovery = () => {
     try {
       if (resetMethod === 'email') {
         await sendPasswordResetEmail(auth, formValues.email);
-        alert('Link de recuperação de senha enviado para o e-mail.');
+        setFeedback('Link de recuperação de senha enviado para o e-mail.');
       } else if (resetMethod === 'phone') {
-        // Logica de recuperação via telefone
-        // Esta função não existe diretamente no Firebase Auth para web.
-        // A lógica para recuperação de senha via telefone precisa ser implementada no backend e depois integrada aqui.
-        alert('Recuperação de senha via telefone ainda não está implementada.');
+        // Lógica de recuperação via telefone
+        // Implemente a lógica de recuperação de senha via telefone aqui
+        setFeedback('Recuperação de senha via telefone ainda não está implementada.');
       }
     } catch (error) {
       console.error('Erro ao tentar redefinir a senha:', error);
-      alert('Erro ao tentar redefinir a senha. Verifique os dados inseridos.');
+      setFeedback('Erro ao tentar redefinir a senha. Verifique os dados inseridos.');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="password-recovery-form" onSubmit={handleSubmit}>
       <h2>Recuperação de Senha</h2>
 
-      <label>Método de Recuperação:</label><br />
-      <input
-        type="radio"
-        id="email_option"
-        name="reset_method"
-        value="email"
-        checked={resetMethod === 'email'}
-        onChange={handleResetMethodChange}
-        required
-      />
-      <label htmlFor="email_option">E-mail</label><br />
-      <input
-        type="radio"
-        id="phone_option"
-        name="reset_method"
-        value="phone"
-        checked={resetMethod === 'phone'}
-        onChange={handleResetMethodChange}
-        required
-      />
-      <label htmlFor="phone_option">Telefone</label><br /><br />
+      <div className="reset-method">
+        <label>
+          Método de Recuperação:
+        </label><br />
+        <input
+          type="radio"
+          id="email_option"
+          name="reset_method"
+          value="email"
+          checked={resetMethod === 'email'}
+          onChange={handleResetMethodChange}
+          required
+        />
+        <label htmlFor="email_option">E-mail</label><br />
+        <input
+          type="radio"
+          id="phone_option"
+          name="reset_method"
+          value="phone"
+          checked={resetMethod === 'phone'}
+          onChange={handleResetMethodChange}
+          required
+        />
+        <label htmlFor="phone_option">Telefone</label><br /><br />
+      </div>
 
       {resetMethod === 'email' && (
-        <div>
+        <div className="email-field">
           <label htmlFor="email">E-mail:</label><br />
           <input
             type="email"
@@ -78,7 +82,7 @@ const PasswordRecovery = () => {
       )}
 
       {resetMethod === 'phone' && (
-        <div>
+        <div className="phone-field">
           <label htmlFor="phone">Telefone:</label><br />
           <input
             type="text"
@@ -92,8 +96,10 @@ const PasswordRecovery = () => {
       )}
 
       <input type="submit" value="Redefinir Senha" />
-    </form>
-  )
-}
 
-export default PasswordRecovery
+      {feedback && <div className="feedback">{feedback}</div>}
+    </form>
+  );
+};
+
+export default RecoveryPassword;

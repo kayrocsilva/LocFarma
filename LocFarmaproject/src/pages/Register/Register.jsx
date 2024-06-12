@@ -1,4 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { auth } from '../../firebase/config';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import InputMask from 'react-input-mask';
 
 const Register = () => {
   const [documentType, setDocumentType] = useState('');
@@ -8,11 +11,16 @@ const Register = () => {
     address: '',
     cep: '',
     email: '',
+    password: '',
+    confirmPassword: '',
     cpf: '',
     companyName: '',
     cnpj: '',
     phone: ''
   });
+
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
   const handleDocumentTypeChange = (e) => {
     setDocumentType(e.target.value);
@@ -23,14 +31,37 @@ const Register = () => {
     setFormValues({ ...formValues, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
+    setSuccess('');
 
-    console.log('Form values:', formValues);
+    if (formValues.password !== formValues.confirmPassword) {
+      setError('As senhas não coincidem.');
+      return;
+    }
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        formValues.email,
+        formValues.password
+      );
+      console.log('Usuário registrado:', userCredential.user);
+      setSuccess('Usuário registrado com sucesso!');
+    } catch (error) {
+      console.error('Erro ao registrar usuário:', error);
+      setError('Erro ao registrar usuário. Tente novamente.');
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
+      <h2>Registro</h2>
+
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {success && <p style={{ color: 'green' }}>{success}</p>}
+
       <label>Tipo de Documento:</label><br />
       <input
         type="radio"
@@ -64,7 +95,7 @@ const Register = () => {
             onChange={handleChange}
             required
           /><br /><br />
-          
+
           <label htmlFor="surname">Sobrenome:</label><br />
           <input
             type="text"
@@ -105,6 +136,26 @@ const Register = () => {
             required
           /><br /><br />
 
+          <label htmlFor="password">Senha:</label><br />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={formValues.password}
+            onChange={handleChange}
+            required
+          /><br /><br />
+
+          <label htmlFor="confirmPassword">Confirmar Senha:</label><br />
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            value={formValues.confirmPassword}
+            onChange={handleChange}
+            required
+          /><br /><br />
+
           <label htmlFor="phone">Celular:</label><br />
           <input
             type="text"
@@ -123,7 +174,8 @@ const Register = () => {
             value={formValues.cpf}
             onChange={handleChange}
             required
-          /><br /><br />
+          />
+          <br /><br />
         </div>
       )}
 
@@ -169,6 +221,26 @@ const Register = () => {
             required
           /><br /><br />
 
+          <label htmlFor="password">Senha:</label><br />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={formValues.password}
+            onChange={handleChange}
+            required
+          /><br /><br />
+
+          <label htmlFor="confirmPassword">Confirmar Senha:</label><br />
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            value={formValues.confirmPassword}
+            onChange={handleChange}
+            required
+          /><br /><br />
+
           <label htmlFor="phone">Celular:</label><br />
           <input
             type="text"
@@ -193,7 +265,7 @@ const Register = () => {
 
       <input type="submit" value="Registrar" />
     </form>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;

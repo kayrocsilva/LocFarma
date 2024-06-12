@@ -1,37 +1,37 @@
 .searchContainer {
-    display: flex;
-    align-items: center;
+  max-width: 400px; 
+}
+
+.searchInput {
+  max-width: 300px; 
+  border-radius: 0px;
+}
+
+.searchButton {
+  margin-left: 10px;
+  padding: 10px 20px; 
+  border-radius: 10px;
+}
+
+
+@media (max-width: 992px) {
+  .searchContainer {
+    max-width: 300px; 
   }
-  
+
   .searchInput {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-right: 8px;
-  }
+    max-width: 200px; 
   
-  .searchButton {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #f0f0f0;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
   }
-  
-  .searchButton:hover {
-    background-color: #e0e0e0;
+}
+
+
+@media (max-width: 576px) {
+  .searchContainer {
+    max-width: 200px; 
   }
-  
-  /* Ícone de lupa para dispositivos móveis */
-  @media (max-width: 768px) {
-    .searchButton {
-      padding: 8px;
-      background-color: transparent;
-      border: none;
-    }
-  
-    .searchButton svg {
-      font-size: 1.2rem;
-    }
+
+  .searchInput {
+    max-width: 150px; 
   }
+}
