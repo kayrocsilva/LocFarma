@@ -4,6 +4,7 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { userAuthentication } from './hooks/userAuthentication'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 import Navbar from '../src/components/NavBar/Navbar'
@@ -14,6 +15,10 @@ import Footer from './components/Footer/Footer'
 import About from './pages/About/About'
 import Register from './pages/Register/Register'
 import PasswordRecovery from './pages/PasswordRecovery/PasswordRecovery'
+import Contact from './pages/Contact/Contact'
+import ProfilePage from './pages/ProfilePage/ProfilePage'
+import ChatRoom from './components/Chat/ChatRoom'
+
 
 
 function App() {
@@ -41,8 +46,11 @@ function App() {
               <Route path='/' element={<Home/>}></Route>
               <Route path='/login' element={<Login />}></Route>          
               <Route path='/about'element={<About />}></Route>
+              <Route path='/contact'element={<Contact />}></Route>
               <Route path='/register' element={<Register />}></Route>  
               <Route path='/recover-password' element={<PasswordRecovery />}></Route>
+              <Route path='/perfil' element={<ProfilePage />}></Route>
+              <Route path='/chat' element={<ChatRoom />}></Route>
             </Routes>
           </div>
           <Footer />

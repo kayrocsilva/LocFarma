@@ -1,6 +1,7 @@
 import React from 'react'
-import SearchBar from '../../components/SearchBar/SearchBar'
+
 import Carousel from '../../components/Carousel/Carousel'
+import Destaques from '../../components/Destaques/Destaques'
 
 
 const Home = () => {
@@ -8,6 +9,8 @@ const Home = () => {
   return (
     <div>      
       <Carousel />
+      <Destaques />
+      
     </div>
     
   )
