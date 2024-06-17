@@ -5,6 +5,8 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { userAuthentication } from './hooks/userAuthentication';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { I18nextProvider } from 'react-i18next';
+import i18n from './i18'; // Importa a configuração do i18next
 
 // Importe o arquivo de configuração do Google Analytics
 import { initGA, logPageView } from './utils/analytics';
@@ -46,7 +48,8 @@ function App() {
   }
 
   return (
-    <>      
+    <>
+    <I18nextProvider i18n={i18n}>   
       <AuthProvider value={{ user }}>
         <BrowserRouter>
           <Navbar />
@@ -65,6 +68,7 @@ function App() {
           <Footer />
         </BrowserRouter>
       </AuthProvider>
+      </I18nextProvider>   
     </>
   );
 }
