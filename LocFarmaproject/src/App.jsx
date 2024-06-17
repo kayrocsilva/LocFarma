@@ -23,6 +23,7 @@ import PasswordRecovery from './pages/PasswordRecovery/PasswordRecovery';
 import Contact from './pages/Contact/Contact';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import ChatRoom from './components/Chat/ChatRoom';
+import ReportsDashboard from './components/ReportsDashboard/ReportsDashboard';
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -63,6 +64,7 @@ function App() {
               <Route path='/recover-password' element={<PasswordRecovery />} />
               <Route path='/perfil' element={<ProfilePage />} />
               <Route path='/chat' element={<ChatRoom />} />
+              <Route path="/reports" element={<ReportsDashboard />} />
             </Routes>
           </div>
           <Footer />
