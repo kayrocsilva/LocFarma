@@ -1,63 +1,72 @@
-import { useState, useEffect } from 'react'
-import { AuthProvider } from './context/AuthContext'
-import { onAuthStateChanged } from 'firebase/auth'
-import { userAuthentication } from './hooks/userAuthentication'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import './App.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import { onAuthStateChanged } from 'firebase/auth';
+import { userAuthentication } from './hooks/userAuthentication';
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
+// Importe o arquivo de configuração do Google Analytics
+import { initGA, logPageView } from './utils/analytics';
 
-import Navbar from '../src/components/NavBar/Navbar'
-import loading from '././assets/images/Loading.gif'
-import Home from './pages/Home/Home'
-import Login from './pages/Login/Login'
-import Footer from './components/Footer/Footer'
-import About from './pages/About/About'
-import Register from './pages/Register/Register'
-import PasswordRecovery from './pages/PasswordRecovery/PasswordRecovery'
-import Contact from './pages/Contact/Contact'
-import ProfilePage from './pages/ProfilePage/ProfilePage'
-import ChatRoom from './components/Chat/ChatRoom'
-
-
+// Importe os componentes da sua aplicação
+import Navbar from '../src/components/NavBar/Navbar';
+import loading from './assets/images/Loading.gif';
+import Home from './pages/Home/Home';
+import Login from './pages/Login/Login';
+import Footer from './components/Footer/Footer';
+import About from './pages/About/About';
+import Register from './pages/Register/Register';
+import PasswordRecovery from './pages/PasswordRecovery/PasswordRecovery';
+import Contact from './pages/Contact/Contact';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
+import ChatRoom from './components/Chat/ChatRoom';
 
 function App() {
-  const [user, setUser] = useState(undefined)
-  const { auth } = userAuthentication()
+  const [user, setUser] = useState(undefined);
+  const { auth } = userAuthentication();
 
-  const loadingUser = user === undefined
+  const loadingUser = user === undefined;
 
   useEffect(() => {
-    onAuthStateChanged(auth, user => {
-      setUser(user)
-    })
-  }, [auth])
+    // Inicializa o Google Analytics quando o componente for montado
+    initGA();
+
+    // Monitora mudanças de rota para registrar as visualizações de página
+    const unregister = onAuthStateChanged(auth, user => {
+      setUser(user);
+      logPageView(); // Registra a visualização da página ao mudar de rota
+    });
+
+    return () => unregister(); // Limpa o listener quando o componente for desmontado
+  }, [auth]);
+
   if (loadingUser) {
-    return <div className='container load'><img src={loading} alt="Gif Loading User" width="120px" height="120px" /></div>
+    return <div className='container load'><img src={loading} alt="Gif Loading User" width="120px" height="120px" /></div>;
   }
-  
+
   return (
     <>      
       <AuthProvider value={{ user }}>
         <BrowserRouter>
-          <Navbar/>
+          <Navbar />
           <div className='container'>
             <Routes>            
-              <Route path='/' element={<Home/>}></Route>
-              <Route path='/login' element={<Login />}></Route>          
-              <Route path='/about'element={<About />}></Route>
-              <Route path='/contact'element={<Contact />}></Route>
-              <Route path='/register' element={<Register />}></Route>  
-              <Route path='/recover-password' element={<PasswordRecovery />}></Route>
-              <Route path='/perfil' element={<ProfilePage />}></Route>
-              <Route path='/chat' element={<ChatRoom />}></Route>
+              <Route path='/' element={<Home />} />
+              <Route path='/login' element={<Login />} />          
+              <Route path='/about' element={<About />} />
+              <Route path='/contact' element={<Contact />} />
+              <Route path='/register' element={<Register />} />  
+              <Route path='/recover-password' element={<PasswordRecovery />} />
+              <Route path='/perfil' element={<ProfilePage />} />
+              <Route path='/chat' element={<ChatRoom />} />
             </Routes>
           </div>
           <Footer />
         </BrowserRouter>
       </AuthProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
